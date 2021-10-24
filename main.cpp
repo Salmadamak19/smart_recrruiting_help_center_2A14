@@ -6,6 +6,6 @@
 using namespace std;
 
 int main()
-{ cout<<hii;
+{ cout<<hi formatin;
     return 0;
 }
