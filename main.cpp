@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "mainwindow.h"
 #include <QApplication>
 #include <QMessageBox>
