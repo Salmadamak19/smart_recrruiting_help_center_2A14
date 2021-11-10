@@ -18,11 +18,12 @@ private slots:
 //les bouttons
     void on_pushButtonAjouter_clicked();
     void on_supp_clicked();
-    //void on_modifier_clicked();
+
+    void on_modifier_clicked();
 
 private:
     Ui::MainWindow *ui;
-     Matriel Mat;
+     Matriel Mat;//
 };
 
 #endif // MAINWINDOW_H

@@ -32,6 +32,9 @@ public:
     bool ajouter();//elle va retourner soit le true soit le false
     QSqlQueryModel* afficher();
     bool supprimer(int);
+bool modifier(int,QString,QString,QString,QString,QString,int,int);
+
+
 
 //les methodes
 private:

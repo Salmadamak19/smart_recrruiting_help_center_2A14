@@ -99,7 +99,7 @@ void MainWindow::on_modifier_clicked()
         }
 
           else
-              QMessageBox::critical(nullptr, QObject::tr("modifier un matériel"),
+              QMessageBox::critical(nullptr, QObject::tr("modifier un matériel),
                           QObject::tr("Erreur !.\n"
                                       "Click Cancel to exit."), QMessageBox::Cancel);
 

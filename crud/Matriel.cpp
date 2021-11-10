@@ -20,7 +20,7 @@ Matriel::Matriel(int id_m,QString nom_m,QString reference_m,QString marque_m,QSt
 {
     this->id=id_m;
     this->nom=nom_m;
-    this-> reference=reference_m;
+    this->reference=reference_m;
     this->marque=marque_m;
     this->etat=etat_m;
     this->mail=mail_m;
@@ -57,15 +57,14 @@ QString MISE_FABstring=QString::number(miseFab);
 QString MISE_FONCstring=QString::number(miseFonc);
 query.prepare("INSERT INTO MATRIEL (ID,NOM,REFERENCE,MARQUE,ETAT,MAIL,MISE_FAB,MISE_FONC) "
                     "VALUES (:ID, :NOM, :REFERENCE,:MARQUE,:ETAT,:MAIL,:MISE_FAB,:MISE_FONC)");
-query.bindValue(":ID",id);
-query.bindValue(" :NOM",nom);
-
+query.bindValue(":ID",IDstring);
+query.bindValue(":NOM",nom);
 query.bindValue(":REFERENCE",reference);
 query.bindValue(":MARQUE",marque);
 query.bindValue(":ETAT",etat );
 query.bindValue(":MAIL",mail );
-query.bindValue(":MISE_FAB",miseFab);
-query.bindValue(":MISE_FONC",miseFonc);
+query.bindValue(":MISE_FAB",MISE_FABstring);
+query.bindValue(":MISE_FONC",MISE_FONCstring);
   return query.exec();
 }
 
@@ -82,9 +81,9 @@ model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("REFERENCE"));
 model->setHeaderData(3, Qt::Horizontal, QObject::tr("MARQUE"));
 model->setHeaderData(4, Qt::Horizontal, QObject::tr("ETAT "));
-model->setHeaderData(5, Qt::Horizontal, QObject::tr("MAIL_FOURNISSEUR "));
-model->setHeaderData(6, Qt::Horizontal, QObject::tr("MISE_FABRICATION"));
-model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONCTION"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("MAIL "));
+model->setHeaderData(6, Qt::Horizontal, QObject::tr("MISE_FAB"));
+model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONC"));
     return model;
 }
 
@@ -94,9 +93,51 @@ model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONCTION"));
 bool Matriel::supprimer(int id )
 {
 QSqlQuery query;
-query.prepare("Delete from MATRIEL where ID = :id ");//table matriel
+query.prepare("Delete from MATRIEL where ID =:ID ");//table matriel
 query.bindValue(0, id);
 return    query.exec();
 }
+
+
+//modifier
+
+bool Matriel::modifier(int id ,QString nom ,QString reference,QString marque,QString etat, QString mail ,int miseFab,int miseFonc)
+{
+QSqlQuery query;
+ QString IDString= QString::number(id);
+QString MISE_FABString= QString::number(miseFab);
+ QString mise_FoncString= QString::number(miseFonc);
+
+
+query.prepare("Update MATRIEL set NOM=:NOM,REFERENCE = :REFERENCE , MARQUE= :MARQUE , ETAT= :ETAT ,MAIL= :MAIL,MISE_FAB= :MISE_FAB,MISE_FONC= :MISE_FONC  where ID = :ID ");
+query.bindValue(":ID", IDString);
+query.bindValue(":NOM", nom);
+query.bindValue(":REFERENCE", reference);
+query.bindValue(":MARQUE", marque);
+query.bindValue(":ETAT",etat);
+query.bindValue(":MAIL", mail);
+query.bindValue(":MISE_FAB", MISE_FABString);
+query.bindValue(":MISE_FONC",mise_FoncString );
+
+return    query.exec();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
