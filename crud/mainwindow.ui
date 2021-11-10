@@ -122,7 +122,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -247,13 +247,26 @@
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>290</y>
+        <y>210</y>
         <width>75</width>
         <height>23</height>
        </rect>
       </property>
       <property name="text">
        <string>Ajouter</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Mod_2">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>160</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modifier</string>
       </property>
      </widget>
     </widget>
@@ -294,7 +307,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="id_supp">
+     <widget class="QPushButton" name="supp">
       <property name="geometry">
        <rect>
         <x>830</x>
@@ -307,7 +320,7 @@
        <string>Supprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="Mod">
       <property name="geometry">
        <rect>
         <x>830</x>
@@ -608,7 +621,7 @@
      <x>0</x>
      <y>0</y>
      <width>1160</width>
-     <height>26</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

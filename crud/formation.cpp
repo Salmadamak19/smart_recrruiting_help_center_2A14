@@ -53,7 +53,7 @@ query.bindValue(":DURE_FOR", DURE_FORstring );
 QSqlQueryModel * Formation::afficher()
 {QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from formation");
+model->setQuery("select * from Formation");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("CODE_FORMATION"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM_FOR"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("NOM_ENCADREUR"));
@@ -66,8 +66,23 @@ model->setHeaderData(4, Qt::Horizontal, QObject::tr("DURE_FOR "));
 bool Formation::supprimer(QString code_formation )
 {
 QSqlQuery query;
-query.prepare("Delete from client where CODE_FORMATION = :CODE_FORMATION ");
-query.bindValue(0, code_formation);
+query.prepare("Delete from Formation where CODE_FORMATION = :CODE_FORMATION ");
+query.bindValue(0,code_formation);
+//query.bindValue(":code_supp",code_formation);
 return    query.exec();
 }
+
+bool Formation::modifier(QString code_formation  ,QString nom_for ,QString nom_encadreur ,QString type_for,int dure_for  )
+{
+    QSqlQuery query;
+    QString DURE_FORstring=QString::number(dure_for);
+        query.prepare("UPDATE Formation SET NOM_FOR=:NOM_FOR , NOM_ENCADREUR=:NOM_ENCADREUR,TYPE_FOR=:TYPE_FOR WHERE CODE_FORMATION=:CODE_FORMATION");
+        query.bindValue(":CODE_FORMATION", code_formation);
+        query.bindValue(" :NOM_FOR",nom_for);
+        query.bindValue(":NOM_ENCADREUR", nom_encadreur);
+        query.bindValue(":TYPE_FOR", type_for);
+        query.bindValue(":DURE_FOR", DURE_FORstring );
+        return    query.exec();
+}
+
 

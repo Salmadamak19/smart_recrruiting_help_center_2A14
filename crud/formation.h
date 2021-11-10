@@ -25,6 +25,10 @@ class Formation
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(QString);
+    bool modifier(QString   ,QString  ,QString ,QString ,int );
+   // QSqlQueryModel * rechercher(QString);
+    // QSqlQueryModel *tri();
+    // bool modifierv2(QString);
 
 private:
     QString code_formation,nom_for,nom_encadreur,type_for;
