@@ -21,9 +21,11 @@ private slots:
 
     void on_modifier_clicked();
 
+    void on_recherche_clicked();
+
 private:
     Ui::MainWindow *ui;
-     Matriel Mat;//
+     Matriel Mat;//pour pouvoir faire l appel a supp et modifier
 };
 
 #endif // MAINWINDOW_H
