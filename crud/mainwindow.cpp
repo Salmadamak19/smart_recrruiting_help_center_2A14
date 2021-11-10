@@ -102,6 +102,10 @@ void MainWindow::on_Mod_2_clicked()
  }
 
 
-
+void MainWindow::on_rechercher_button_clicked()
+{
+    QString rech =ui->code_supp->text();
+        ui->tab_for->setModel(Etmp.rechercher(rech));
+}
 
 

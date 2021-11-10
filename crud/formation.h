@@ -26,7 +26,7 @@ class Formation
     QSqlQueryModel * afficher();
     bool supprimer(QString);
     bool modifier(QString   ,QString  ,QString ,QString ,int );
-   // QSqlQueryModel * rechercher(QString);
+    QSqlQueryModel * rechercher(QString);
     // QSqlQueryModel *tri();
     // bool modifierv2(QString);
 

@@ -22,7 +22,7 @@ private slots:
 
   void on_Mod_2_clicked();
 
- // void on_rechercher_button_clicked();
+  void on_rechercher_button_clicked();
 
   //void on_trier_button_clicked();
 

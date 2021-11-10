@@ -41,8 +41,7 @@ QString DURE_FORstring=QString::number(dure_for);
 query.prepare("INSERT INTO FORMATION (CODE_FORMATION,NOM_FOR,NOM_ENCADREUR,TYPE_FOR,DURE_FOR) "
                     "VALUES (:CODE_FORMATION, :NOM_FOR, :NOM_ENCADREUR,:TYPE_FOR,:DURE_FOR)");
 query.bindValue(":CODE_FORMATION", code_formation);
-query.bindValue(" :NOM_FOR",nom_for);
-
+query.bindValue(":NOM_FOR",nom_for);
 query.bindValue(":NOM_ENCADREUR", nom_encadreur);
 query.bindValue(":TYPE_FOR", type_for);
 query.bindValue(":DURE_FOR", DURE_FORstring );
@@ -85,4 +84,10 @@ bool Formation::modifier(QString code_formation  ,QString nom_for ,QString nom_e
         return    query.exec();
 }
 
+QSqlQueryModel *Formation::rechercher(QString rech)
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
 
+        model->setQuery("select * from Formation where code_formation LIKE '"+rech+"%'");
+    return model;
+}
