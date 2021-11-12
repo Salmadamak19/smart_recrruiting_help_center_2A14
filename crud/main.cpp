@@ -2,7 +2,8 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
-//main programme principale
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
     if(test)//si la connexion est etabli
     {
         w.show();//si elle a retourner true donc je vais afficher ce message
+
         //message pour la connection
         QMessageBox::information(nullptr, QObject::tr("database is open"),
                     QObject::tr("connection successful.\n"

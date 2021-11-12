@@ -5,14 +5,37 @@
 #include <QDebug>
 #include <QIntValidator>
 #include <QDateEdit>
+#include <QComboBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);//
-    ui->id->setValidator(new QIntValidator (0, 9999999, this));//controle de saisie sur id pour inserer des entiers
-    ui->tab_mat->setModel(Mat.afficher());//affichage de tableau
+    ui->setupUi(this);
+    //CONTROLE DE SAISIE
+    ui->id->setValidator(new QIntValidator (0, 9999999, this));
+    ui->nom->setMaxLength(12);
+    ui->reference->setMaxLength(5);
+
+    //COMBO BOX marque
+    ui->marque->addItem(QIcon(""),"Brother");
+    ui->marque->addItem("HP");
+    ui->marque->addItem("MACOS");
+    ui->marque->addItem("Asus");
+    ui->marque->addItem("Samsung");
+
+//pour le remplir de tableau dans l iterface graphique
+    ui->tab_mat->setModel(Mat.afficher());
+
+
+
+
 }
+
+
+
+
+
+
 
 //ajouter
 void MainWindow::on_pushButtonAjouter_clicked()
@@ -21,8 +44,11 @@ void MainWindow::on_pushButtonAjouter_clicked()
    int id=ui->id->text().toInt();//convertir l id de chaine de car vers un entier w baaed thutha
    QString nom=ui->nom->text();
    QString reference =ui->reference->text();
-   QString marque=ui->marque->text();
+   QString marque=ui->marque->currentText();
+
+
    QString etat=ui->etat->text();
+
    QString mail=ui->mail->text();
    QDate miseFab=ui->miseFab->date();
    QDate miseFonc=ui->miseFonc->date();
@@ -45,6 +71,12 @@ if (test)
                                           "click Cancel to exit."),QMessageBox::Cancel);
 }
 
+
+
+
+
+
+
 //supprimer
 void MainWindow::on_supp_clicked()
 {
@@ -60,7 +92,7 @@ if (test)
                                            QObject::tr("Suppression effectué\n"
                                                        "click cancel to exit."),QMessageBox::Cancel);
 
- //actualiser
+ //ken tfskht bch ysir refresh de mon tableau
            ui->tab_mat->setModel(Mat.afficher());
         }
     else
@@ -70,6 +102,11 @@ if (test)
 
 }
 
+
+
+
+
+
 //modifier
 
 void MainWindow::on_modifier_clicked()
@@ -77,15 +114,15 @@ void MainWindow::on_modifier_clicked()
     int id=ui->id->text().toInt();
     QString nom=ui->nom->text();
     QString reference=ui->reference->text();
-    QString marque=ui->marque->text();
-    QString etat=ui->etat->text();//etat boutoon dans maquette bech njm nktb f maquette zeda
+    QString marque=ui->marque->currentText();
+    QString etat=ui->etat->text();
     QString mail=ui->mail->text();
     QDate miseFab=ui->miseFab->date();
     QDate miseFonc=ui->miseFonc->date();
 
 
         Matriel m(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
-        bool test=m.modifier(id,nom,reference,marque,etat,mail,miseFab,miseFonc);//modifier  wahda meli f woset
+        bool test=m.modifier(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
     if (test)
     {
         //actualiser
@@ -113,7 +150,7 @@ void MainWindow::on_recherche_clicked()
 {
 
     QString reference_M =ui->rech_id->text();
-       ui->tab_mat->setModel(Mat.rechercher_id(reference_M));
+       ui->tab_mat->setModel(Mat.rechercher_ref(reference_M));
 
 
 }
@@ -121,3 +158,5 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+

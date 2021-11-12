@@ -34,9 +34,13 @@ public:
     bool supprimer(int);
 bool modifier(int,QString,QString,QString,QString,QString,QDate,QDate);
 
-QSqlQueryModel * rechercher_id(QString);
 
-//les methodes
+
+
+QSqlQueryModel * rechercher_ref(QString);
+//QSqlQueryModel *  Matriel::rechercher_id(int);
+
+//les attribus
 private:
     QString nom,reference,marque,etat,mail;
     int id;

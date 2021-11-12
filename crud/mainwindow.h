@@ -23,6 +23,8 @@ private slots:
 
     void on_recherche_clicked();
 
+    void on_sendMail_clicked();
+
 private:
     Ui::MainWindow *ui;
      Matriel Mat;//pour pouvoir faire l appel a supp et modifier

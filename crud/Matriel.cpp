@@ -1,7 +1,7 @@
 #include "Matriel.h"
-#include<QSqlQueryModel>
-#include<QtDebug>
-#include<QObject>
+#include<QSqlQueryModel>//pour les models
+#include<QtDebug>//
+#include<QObject>//pour les objets
 //constructeur par defaut
 Matriel::Matriel()
 {
@@ -29,7 +29,7 @@ Matriel::Matriel(int id_m,QString nom_m,QString reference_m,QString marque_m,QSt
 
 }
 
-int Matriel::get_id(){return id;}//khedmt get
+int Matriel::get_id(){return id;}
 QString Matriel::get_nom(){return  nom;}
 QString Matriel::get_reference(){return reference;}
 QString Matriel::get_marque(){return marque;}
@@ -38,7 +38,7 @@ QString Matriel::get_mail(){return mail;}
 QDate Matriel::get_miseFab(){return miseFab;}
 QDate Matriel::get_miseFonc(){return miseFonc;}
 
-void  Matriel::setid(int id) {this->id=id;}//khedma taae set bch njmo naytulha ll fichier lokhryn khtrhm prive
+void  Matriel::setid(int id) {this->id=id;}
 void  Matriel::set_nom(QString nom ){this->nom=nom;}
 void  Matriel::set_reference(QString reference){this->reference=reference;}
 void  Matriel::set_marque(QString marque){this->marque=marque;}
@@ -48,15 +48,17 @@ void  Matriel::set_miseFab(QDate miseFab) {this->miseFab=miseFab;}
 void  Matriel::set_miseFonc(QDate miseFonc) {this->miseFab=miseFonc;}
 
 
-//ajouter dans la base de donnee
+
 bool Matriel::ajouter()
 {
-QSqlQuery query;
-QString IDstring=QString::number(id);
+QSqlQuery query;//requette c est query de type sql (bd)
 
+
+QString IDstring=QString::number(id);
 query.prepare("INSERT INTO MATRIEL (ID,NOM,REFERENCE,MARQUE,ETAT,MAIL,MISE_FAB,MISE_FONC) "
                     "VALUES (:ID, :NOM, :REFERENCE,:MARQUE,:ETAT,:MAIL,:MISE_FAB,:MISE_FONC)");
-query.bindValue(":ID",IDstring);
+
+query.bindValue(":ID",IDstring);//bindvalue thez mn interface graphique w thutha f variable
 query.bindValue(":NOM",nom);
 query.bindValue(":REFERENCE",reference);
 query.bindValue(":MARQUE",marque);
@@ -64,19 +66,23 @@ query.bindValue(":ETAT",etat );
 query.bindValue(":MAIL",mail );
 query.bindValue(":MISE_FAB",miseFab);
 query.bindValue(":MISE_FONC",miseFonc);
-  return query.exec();
+  return query.exec();//exec heya lbch trja3 le true wala false est ce que il est ajouter ou non
 }
 
 
 
-//afficher dans la base de donnee
+
+
+
+
+
 QSqlQueryModel* Matriel::afficher()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
 
-//affichage des aattribus dans la maquette
+
 model->setQuery("select* from MATRIEL");
-model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));//setheader yaani je suis entrain d ajouter le nom de coulone de mon tableau
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("REFERENCE"));
 model->setHeaderData(3, Qt::Horizontal, QObject::tr("MARQUE"));
@@ -94,7 +100,7 @@ bool Matriel::supprimer(int id )
 {
 
 QSqlQuery query;
-query.prepare("Delete from MATRIEL where ID =:ID ");//table matriel
+query.prepare("Delete from MATRIEL where ID =:ID ");
 query.bindValue(0, id);
 
 
@@ -128,7 +134,7 @@ return    query.exec();
 
 
 
-QSqlQueryModel *  Matriel::rechercher_id(QString reference_M)
+QSqlQueryModel *  Matriel::rechercher_ref(QString reference_M)
  {
 
 QSqlQuery qry;
@@ -137,17 +143,20 @@ QSqlQuery qry;
 
 
    return model;
-
-
-
-
  }
+/*
+
+QSqlQueryModel *  Matriel::rechercher_id(int id )
+ {
+
+QSqlQuery qry;
+     QSqlQueryModel *model= new QSqlQueryModel;
+     model->setQuery("select * from MATRIEL where id LIKE '"+id+"%'");
 
 
-
-
-
-
+   return model;
+ }
+*/
 
 
 
