@@ -134,35 +134,58 @@ return    query.exec();
 
 
 
-QSqlQueryModel *  Matriel::rechercher_ref(QString reference_M)
- {
+QSqlQueryModel * Matriel::rechercher(QString txt)
+  {
 
-QSqlQuery qry;
-     QSqlQueryModel *model= new QSqlQueryModel;
-     model->setQuery("select * from MATRIEL where reference LIKE '"+reference_M+"%'");
-
-
-   return model;
- }
-/*
-
-QSqlQueryModel *  Matriel::rechercher_id(int id )
- {
-
-QSqlQuery qry;
-     QSqlQueryModel *model= new QSqlQueryModel;
-     model->setQuery("select * from MATRIEL where id LIKE '"+id+"%'");
+      QSqlQueryModel *model=new QSqlQueryModel();
+      model->setQuery("select * from MATRIEL where REFERENCE LIKE '"+txt+"'" );
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));//setheader yaani je suis entrain d ajouter le nom de coulone de mon tableau
+      model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+      model->setHeaderData(2, Qt::Horizontal, QObject::tr("REFERENCE"));
+      model->setHeaderData(3, Qt::Horizontal, QObject::tr("MARQUE"));
+      model->setHeaderData(4, Qt::Horizontal, QObject::tr("ETAT "));
+      model->setHeaderData(5, Qt::Horizontal, QObject::tr("MAIL "));
+      model->setHeaderData(6, Qt::Horizontal, QObject::tr("MISE_FAB"));
+      model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONC"));
 
 
-   return model;
- }
-*/
+      return model;
+  }
+QSqlQueryModel *Matriel::rechercher1(QString txt)
+  {
+
+      QSqlQueryModel *model=new QSqlQueryModel();
+      model->setQuery("select * from MATRIEL where MAIL LIKE '"+txt+"'" );
+
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));//setheader yaani je suis entrain d ajouter le nom de coulone de mon tableau
+      model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+      model->setHeaderData(2, Qt::Horizontal, QObject::tr("REFERENCE"));
+      model->setHeaderData(3, Qt::Horizontal, QObject::tr("MARQUE"));
+      model->setHeaderData(4, Qt::Horizontal, QObject::tr("ETAT "));
+      model->setHeaderData(5, Qt::Horizontal, QObject::tr("MAIL "));
+      model->setHeaderData(6, Qt::Horizontal, QObject::tr("MISE_FAB"));
+      model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONC"));
+
+      return model;
+  }
+QSqlQueryModel *Matriel::rechercher2(QString txt)
+  {
+
+      QSqlQueryModel *model=new QSqlQueryModel();
+      model->setQuery("select * from MATRIEL where MARQUE LIKE '"+txt+"'" );
+
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));//setheader yaani je suis entrain d ajouter le nom de coulone de mon tableau
+      model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+      model->setHeaderData(2, Qt::Horizontal, QObject::tr("REFERENCE"));
+      model->setHeaderData(3, Qt::Horizontal, QObject::tr("MARQUE"));
+      model->setHeaderData(4, Qt::Horizontal, QObject::tr("ETAT "));
+      model->setHeaderData(5, Qt::Horizontal, QObject::tr("MAIL "));
+      model->setHeaderData(6, Qt::Horizontal, QObject::tr("MISE_FAB"));
+      model->setHeaderData(7, Qt::Horizontal, QObject::tr("MISE_FONC"));
 
 
 
 
-
-
-
-
+      return  model;
+}
 

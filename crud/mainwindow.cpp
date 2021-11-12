@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     //CONTROLE DE SAISIE
     ui->id->setValidator(new QIntValidator (0, 9999999, this));
-    ui->nom->setMaxLength(12);
-    ui->reference->setMaxLength(5);
+    ui->mail->setValidator(new QRegExpValidator(QRegExp("\\b[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}\\b")));//mail
 
     //COMBO BOX marque
     ui->marque->addItem(QIcon(""),"Brother");
@@ -22,6 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->marque->addItem("MACOS");
     ui->marque->addItem("Asus");
     ui->marque->addItem("Samsung");
+
+
+
+
+
+
+
+
 
 //pour le remplir de tableau dans l iterface graphique
     ui->tab_mat->setModel(Mat.afficher());
@@ -149,8 +156,13 @@ void MainWindow::on_modifier_clicked()
 void MainWindow::on_recherche_clicked()
 {
 
-    QString reference_M =ui->rech_id->text();
-       ui->tab_mat->setModel(Mat.rechercher_ref(reference_M));
+    QString reference =ui->rech->text();
+    QString mail =ui->rech->text();
+    QString marque =ui->rech->text();
+       ui->tab_mat->setModel(Mat.rechercher(reference));
+
+       ui->tab_mat->setModel(Mat.rechercher1(mail));
+       ui->tab_mat->setModel(Mat.rechercher2(marque));
 
 
 }

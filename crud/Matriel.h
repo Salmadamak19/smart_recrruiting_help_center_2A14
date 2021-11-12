@@ -35,10 +35,10 @@ public:
 bool modifier(int,QString,QString,QString,QString,QString,QDate,QDate);
 
 
-
-
-QSqlQueryModel * rechercher_ref(QString);
-//QSqlQueryModel *  Matriel::rechercher_id(int);
+//rechercher
+QSqlQueryModel * rechercher(QString txt );
+QSqlQueryModel * rechercher1(QString txt  );
+QSqlQueryModel * rechercher2(QString txt );
 
 //les attribus
 private:
